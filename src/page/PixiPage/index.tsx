@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { GCanvasView } from '@flyskywhy/react-native-gcanvas'
-import PIXI from '../../lib/pi.ts'
+import { PIXI } from 'react-native-pixi'
 import { Asset } from 'expo-asset'
 
 const source = require('../../assets/background-1.jpeg')
@@ -17,7 +17,7 @@ export default function PixiPage() {
 	const onContextCreate = async (canvas) => {
 		canvas = canvas
 		gl = canvas.getContext('webgl', { stencil: true })
-		app = new PIXI.Application({ context: gl, devicePixelRatio: 2, backgroundColor: '0x7ed321' })
+		app = new PIXI.Application({ context: gl, devicePixelRatio: canvas._devicePixelRatio, backgroundColor: '0x7ed321' })
 		fileSource = Asset.fromModule(source)
 		if (!fileSource.downloaded) fileSource = await fileSource.downloadAsync()
 		const sprite = PIXI.Sprite.from(fileSource.localUri)
