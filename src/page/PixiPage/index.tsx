@@ -17,7 +17,7 @@ export default function PixiPage() {
 	const onContextCreate = async (canvas) => {
 		canvas = canvas
 		gl = canvas.getContext('webgl', { stencil: true })
-		app = new PIXI.Application({ context: gl, devicePixelRatio: canvas._devicePixelRatio, backgroundColor: '0x7ed321' })
+		app = new PIXI.Application({ context: gl, devicePixelRatio: canvas._devicePixelRatio, backgroundColor: 0x7ed321 })
 		fileSource = Asset.fromModule(source)
 		if (!fileSource.downloaded) fileSource = await fileSource.downloadAsync()
 		const sprite = PIXI.Sprite.from(fileSource.localUri)
